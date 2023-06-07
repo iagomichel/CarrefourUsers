@@ -1,4 +1,6 @@
 package com.iagomichel.carrefourusers.ui
 
-class UsersFragment {
+import androidx.fragment.app.Fragment
+
+class UsersFragment: Fragment() {
 }
