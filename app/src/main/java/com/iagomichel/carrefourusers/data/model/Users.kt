@@ -1,4 +1,6 @@
 package com.iagomichel.carrefourusers.data.model
 
-class Users {
-}
+data class Users(
+    val login: String,
+    val id: Int
+)
