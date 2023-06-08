@@ -8,9 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.iagomichel.carrefourusers.R
+import com.iagomichel.carrefourusers.viewmodel.UsersViewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class UsersFragment: Fragment() {
 
+    private val usersViewModel: UsersViewModel by activityViewModel()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,6 +29,9 @@ class UsersFragment: Fragment() {
             context,
             LinearLayoutManager.VERTICAL,
             false
+        )
+        rvUsers?.adapter = AdapterUsers(
+            usersViewModel.fetchUsersList()
         )
     }
 }
