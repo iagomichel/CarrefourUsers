@@ -15,10 +15,25 @@ class UsersViewModel(
     private val _users = MutableLiveData<List<Users>>()
     val users: LiveData<List<Users>> = _users
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
+
+    private val _onError = MutableLiveData<String>()
+    val error: LiveData<String> = _onError
+
     fun fetchUsersList(){
-        viewModelScope.launch {
-            val remoteData = userRepository.fetchRemoteDataUsers()
-            _users.postValue(remoteData)
-        }
+        viewModelScope
+            .launch {
+                _loading.postValue(true)
+                runCatching {
+                    val remoteData = userRepository.fetchRemoteDataUsers()
+                    _users.postValue(remoteData)
+                }.onSuccess {
+                    _loading.postValue(false)
+                }.onFailure { error ->
+                    _loading.postValue(false)
+                    _onError.postValue(error.message)
+                }
+            }
     }
 }
