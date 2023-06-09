@@ -26,8 +26,7 @@ class UsersViewModel(
             .launch {
                 _loading.postValue(true)
                 runCatching {
-                    val remoteData = userRepository.fetchRemoteDataUsers()
-                    _users.postValue(remoteData)
+                    _users.postValue(userRepository.fetchRemoteDataUsers())
                 }.onSuccess {
                     _loading.postValue(false)
                 }.onFailure { error ->
