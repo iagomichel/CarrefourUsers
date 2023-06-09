@@ -14,6 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.activityViewModel
 class UsersFragment: Fragment() {
 
     private val usersViewModel: UsersViewModel by activityViewModel()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,14 +25,21 @@ class UsersFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        addObservables()
+        usersViewModel.fetchUsersList()
+    }
+
+    private fun addObservables() {
         val rvUsers = activity?.findViewById<RecyclerView>(R.id.recycler_users)
-        rvUsers?.layoutManager = LinearLayoutManager(
-            context,
-            LinearLayoutManager.VERTICAL,
-            false
-        )
-        rvUsers?.adapter = AdapterUsers(
-            usersViewModel.fetchUsersList()
-        )
+
+        usersViewModel.users.observe(viewLifecycleOwner) { listUsers ->
+            rvUsers?.layoutManager = LinearLayoutManager(
+                context,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            rvUsers?.adapter = AdapterUsers(listUsers)
+        }
     }
 }
