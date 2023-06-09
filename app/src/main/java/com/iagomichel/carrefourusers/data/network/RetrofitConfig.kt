@@ -10,14 +10,15 @@ object RetrofitConfig {
         MoshiConverterFactory
             .create(MoshiBuilder.create())
 
-    fun create(): UsersApi {
+    fun <T> create(
+        baseURL: String,
+        serviceInterface: Class<T>
+    ): T {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.github.com/")
+            .baseUrl(baseURL)
             .addConverterFactory(makeMoshiConverterFactory())
             .build()
 
-        val service: UsersApi = retrofit.create(UsersApi::class.java)
-
-        return service
+        return retrofit.create(serviceInterface)
     }
 }

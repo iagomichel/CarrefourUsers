@@ -1,11 +1,14 @@
 package com.iagomichel.carrefourusers.data.repository
 
 import com.iagomichel.carrefourusers.data.model.Users
-import com.iagomichel.carrefourusers.data.network.RetrofitConfig
+import com.iagomichel.carrefourusers.data.service.UsersApi
 
-class UserRepositoryImpl: UserRepository {
+
+class UserRepositoryImpl(
+    private val usersApi: UsersApi
+): UserRepository {
 
     override suspend fun fetchRemoteDataUsers(): List<Users> {
-        return RetrofitConfig.create().fetchUsers()
+        return usersApi.fetchUsers()
     }
 }
