@@ -23,7 +23,6 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import androidx.arch.core.*
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import io.mockk.mockkObject
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.resetMain
 import org.junit.After
@@ -70,7 +69,7 @@ class UsersViewModelTest : KoinComponent {
     @Test
     fun `test fetchUsersList should update users LiveData`() {
         // Given
-        val usersList = listOf(Users(login = "abcde", id = 1, avatarUrl = "https://www.google.com"))
+        val usersList: List<Users> = mockk()
         coEvery { userRepository.fetchRemoteDataUsers() } returns usersList
 
         val usersObserver = mockk<Observer<List<Users>>>(relaxed = true)
@@ -87,9 +86,7 @@ class UsersViewModelTest : KoinComponent {
     @Test
     fun `test fetchUsersList should update loading LiveData`() {
         // Given
-        mockkObject()
-
-        val usersList = listOf(Users(login = "abcde", id = 1, avatarUrl = "https://www.google.com"))
+        val usersList: List<Users> = mockk()
         coEvery { userRepository.fetchRemoteDataUsers() } returns usersList
 
         val loadingObserver = mockk<Observer<Boolean>>(relaxed = true)
