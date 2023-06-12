@@ -7,6 +7,11 @@ android {
     namespace 'com.iagomichel.carrefourusers'
     compileSdk 33
 
+    packagingOptions {
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/LICENSE-notice.md'
+    }
+
     defaultConfig {
         applicationId "com.iagomichel.carrefourusers"
         minSdk 24
@@ -18,6 +23,17 @@ android {
 
         buildConfigField "String", "BASE_API", "\"https://api.github.com/\""
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            all {
+                // Habilitar a mocking inline
+                systemProperty "mockk.inline", "true"
+            }
+        }
+    }
+
 
     buildTypes {
         release {
@@ -36,12 +52,16 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.lifecycle:lifecycle-runtime-testing:2.6.1'
+    debugImplementation 'androidx.fragment:fragment-testing:1.6.0'
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation "androidx.test:runner:1.5.2"
+    androidTestImplementation "androidx.test:rules:1.5.0"
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
