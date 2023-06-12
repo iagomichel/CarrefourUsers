@@ -1,4 +1,9 @@
 package com.iagomichel.carrefourusers.data.model
 
-class Users {
-}
+import com.squareup.moshi.Json
+
+data class Users(
+    val login: String,
+    @Json(name = "avatar_url")
+    val avatarUrl: String = ""
+)
