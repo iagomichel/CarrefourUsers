@@ -32,16 +32,14 @@ Aplicativo escrito em Kotlin com arquitetura MVVM, que mostra uma listagem de us
 
 # Arquitetura Model View View Model (MVVM).
 
-<img src="https://developer.android.com/topic/libraries/architecture/images/final-architecture.png" align="left" hspace="1" vspace="1">
-</br> 
-</br> 
-</br> 
+![image](https://github.com/iagomichel/CarrefourUsers/assets/50705624/b08656e2-66ba-4103-8c75-13173b53706b)
+
 </br> 
 
 # Como rodar os testes unitários?
 Para rodar os testes unitários, no terminal digitar: <b>./gradlew test</b>
 ![image](https://github.com/iagomichel/CarrefourUsers/assets/50705624/546810ba-9e6d-494e-b730-cdcf023f16c4)
-
+</br> 
 # Como rodar os testes instrumentados?
 Para rodar os testes instrumentados, conectar Emulador Android ou Dispositivo fisico e no terminal digitar: <b>./gradlew connectedAndroidTest</b>
 ![image](https://github.com/iagomichel/CarrefourUsers/assets/50705624/70ab2125-3b08-4dc7-92a2-a63400fae039)
@@ -74,3 +72,5 @@ https://drive.google.com/file/d/1Pt58K6bHGV-g8cUAye6nPt5XM927EOKU/view?usp=shari
 <a href="http://linkedin.com/in/iago-michel-azevedo-b05150122" target="_blank" >
   <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Linkedin.svg" alt="E-mail" witdh="44" height="44" hspace="10">
 </a>
+
+
